@@ -121,6 +121,19 @@ button { font-family: inherit; }
     border-bottom: 1px solid transparent;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+/* When a logged-in user has the WP admin toolbar showing, it's position:fixed at
+   top:0 with a very high z-index — a sticky header also pinned at top:0 rides up
+   underneath/behind it while scrolling instead of stopping just below it. WP's
+   own admin-bar height is 32px on desktop, 46px under its own 782px breakpoint
+   (matches WP core's exact breakpoint, not this theme's own responsive ones). */
+body.admin-bar .serenity-header {
+    top: 32px;
+}
+@media screen and (max-width: 782px) {
+    body.admin-bar .serenity-header {
+        top: 46px;
+    }
+}
 .serenity-header.is-scrolled {
     border-bottom-color: var(--serenity-border);
     box-shadow: 0 4px 20px rgba(43, 38, 34, 0.06);
@@ -574,10 +587,17 @@ button { font-family: inherit; }
     .serenity-nav-list a { font-size: 18px; }
     .serenity-nav-toggle { display: flex; }
     .serenity-header-phone { display: none; }
+    /* WP's admin-bar breakpoint (782px) sits inside this one — 32px tall above
+       that, 46px at/below it — so both are covered here. */
+    body.admin-bar .serenity-nav { top: calc(84px + 32px); }
+}
+@media screen and (max-width: 782px) {
+    body.admin-bar .serenity-nav { top: calc(84px + 46px); }
 }
 @media (max-width: 700px) {
     .serenity-header-inner { height: 68px; }
     .serenity-nav { top: 68px; }
+    body.admin-bar .serenity-nav { top: calc(68px + 46px); }
     .serenity-hero { min-height: 520px; }
     .serenity-features-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
     .serenity-steps, .serenity-testimonials-grid { grid-template-columns: 1fr; }
