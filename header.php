@@ -72,16 +72,30 @@ defined('ABSPATH') || exit;
                     <?php echo esc_html($phone); ?>
                 </a>
                 <?php endif; ?>
-                <?php
-                // wcsbm-trigger-modal — the wc-service-booking plugin's own global
-                // "open the booking modal, no service preselected" trigger
-                // (assets/script.js, bound on wp_body_open()'s modal markup which is
-                // injected on every page automatically). href stays a real URL so a
-                // no-JS visitor still lands somewhere useful instead of a dead link.
-                ?>
-                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="serenity-btn serenity-btn-primary serenity-btn-sm wcsbm-trigger-modal">
-                    <?php esc_html_e('Book Now', 'serenity'); ?>
-                </a>
+                <?php if (get_theme_mod('serenity_header_cta_mode', 'book') === 'buy'): ?>
+                    <?php
+                    // Plugin-demo-site mode (Customizer: Header CTA Button) — this
+                    // site is showcasing the wc-service-booking plugin itself, so the
+                    // persistent top-nav CTA drives toward buying it (opens in a new
+                    // tab) instead of opening the booking modal; the hero button below
+                    // still demonstrates that modal regardless of this setting.
+                    ?>
+                    <a href="<?php echo esc_url(get_theme_mod('serenity_buy_now_url', 'https://lieusoft.com/')); ?>" class="serenity-btn serenity-btn-primary serenity-btn-sm" target="_blank" rel="noopener noreferrer">
+                        <?php esc_html_e('Buy Now', 'serenity'); ?>
+                    </a>
+                <?php else: ?>
+                    <?php
+                    // Real-spa-site mode (default) — wcsbm-trigger-modal is the
+                    // wc-service-booking plugin's own global "open the booking modal,
+                    // no service preselected" trigger (assets/script.js, bound on
+                    // wp_body_open()'s modal markup which is injected on every page
+                    // automatically). href stays a real URL so a no-JS visitor still
+                    // lands somewhere useful instead of a dead link.
+                    ?>
+                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="serenity-btn serenity-btn-primary serenity-btn-sm wcsbm-trigger-modal">
+                        <?php esc_html_e('Book Now', 'serenity'); ?>
+                    </a>
+                <?php endif; ?>
                 <button type="button" class="serenity-nav-toggle" id="serenity-nav-toggle" aria-expanded="false" aria-controls="serenity-nav">
                     <span></span><span></span><span></span>
                     <span class="screen-reader-text"><?php esc_html_e('Menu', 'serenity'); ?></span>
