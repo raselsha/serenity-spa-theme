@@ -1,0 +1,18 @@
+/*
+Theme Name: Serenity
+Theme URI: https://github.com/raselsha/serenity-spa-theme
+Author: Shahadat Hossain
+Author URI: https://shahadat.com.bd
+Description: A modern, responsive spa & wellness service-booking theme built for the wc-service-booking plugin. Warm, calming design with a real homepage, services, branches, and contact pages, fully wired to the plugin's own booking, staff, and multi-branch data.
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 7.4
+Tested up to: 7.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: serenity
+*/
+
+/* All actual styling lives in assets/css/main.css (enqueued in functions.php)
+   so it can be cached/versioned independently — this file only needs to exist
+   with the header above for WordPress to recognize the theme. */
