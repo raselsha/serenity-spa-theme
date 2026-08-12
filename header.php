@@ -72,7 +72,14 @@ defined('ABSPATH') || exit;
                     <?php echo esc_html($phone); ?>
                 </a>
                 <?php endif; ?>
-                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="serenity-btn serenity-btn-primary serenity-btn-sm">
+                <?php
+                // wcsbm-trigger-modal — the wc-service-booking plugin's own global
+                // "open the booking modal, no service preselected" trigger
+                // (assets/script.js, bound on wp_body_open()'s modal markup which is
+                // injected on every page automatically). href stays a real URL so a
+                // no-JS visitor still lands somewhere useful instead of a dead link.
+                ?>
+                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="serenity-btn serenity-btn-primary serenity-btn-sm wcsbm-trigger-modal">
                     <?php esc_html_e('Book Now', 'serenity'); ?>
                 </a>
                 <button type="button" class="serenity-nav-toggle" id="serenity-nav-toggle" aria-expanded="false" aria-controls="serenity-nav">

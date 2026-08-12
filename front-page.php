@@ -21,7 +21,7 @@ $branches   = serenity_get_branches();
             <h1 class="serenity-hero-title"><?php echo esc_html(get_theme_mod('serenity_hero_title', __('Restore your body, calm your mind', 'serenity'))); ?></h1>
             <p class="serenity-hero-subtitle"><?php echo esc_html(get_theme_mod('serenity_hero_subtitle', __('Traditional Thai massage, modern spa therapies, and a dedicated team of licensed therapists — booked online in under a minute.', 'serenity'))); ?></p>
             <div class="serenity-hero-actions">
-                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="serenity-btn serenity-btn-primary serenity-btn-lg"><?php esc_html_e('Book an Appointment', 'serenity'); ?></a>
+                <a href="<?php echo esc_url(home_url('/services/')); ?>" class="serenity-btn serenity-btn-primary serenity-btn-lg wcsbm-trigger-modal"><?php esc_html_e('Book an Appointment', 'serenity'); ?></a>
                 <a href="<?php echo esc_url(home_url('/about/')); ?>" class="serenity-btn serenity-btn-ghost serenity-btn-lg"><?php esc_html_e('Learn More', 'serenity'); ?></a>
             </div>
         </div>
