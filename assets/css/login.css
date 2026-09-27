@@ -1,0 +1,229 @@
+/* Serenity — custom login screen.
+   Same structural recipe as this project's other internal-tool login screens
+   (radial-gradient soft background, white rounded card, gradient icon badge,
+   pill inputs, single-color CTA with hover/active/loading states), retuned to
+   this theme's own warm gold/terracotta palette instead of borrowing another
+   project's blue/green. Standalone page (own <html>), so these are full
+   page-level rules, not scoped under .serenity-* body classes elsewhere.
+
+   Deliberately self-contained (own :root tokens, no dependency on
+   assets/css/main.css) — this stylesheet loads alone on two contexts that
+   never load main.css: the dedicated login page template (its own bare
+   <html>, no header.php/footer.php) and wp-login.php via login_enqueue_scripts
+   (a completely separate WP screen from the regular frontend). Values are
+   duplicated from main.css's own :root on purpose, not a typo/drift risk —
+   the same way style.css already stands alone from main.css in this theme. */
+:root {
+    --serenity-primary: #D4A373;
+    --serenity-primary-dark: #B8895C;
+    --serenity-ink: #2B2622;
+    --serenity-ink-soft: #4A4238;
+    --serenity-muted: #857C6E;
+    --serenity-cream: #FBF7F2;
+    --serenity-cream-alt: #F3ECE1;
+    --serenity-border: #E8E1D3;
+    --serenity-sage-light: #E7EBE1;
+    --serenity-font-display: 'Fraunces', Georgia, serif;
+    --serenity-font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --serenity-shadow-lg: 0 24px 60px rgba(43, 38, 34, 0.14);
+}
+
+.serenity-login-body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--serenity-font-body);
+    -webkit-font-smoothing: antialiased;
+    background:
+        radial-gradient(circle at 12% 15%, rgba(212, 163, 115, 0.20), transparent 45%),
+        radial-gradient(circle at 88% 85%, rgba(124, 139, 111, 0.16), transparent 45%),
+        var(--serenity-cream);
+}
+
+.serenity-login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+}
+
+.serenity-login-card {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    border-radius: 24px;
+    border: 1px solid var(--serenity-border);
+    box-shadow: var(--serenity-shadow-lg);
+    padding: 44px 36px 36px;
+    text-align: center;
+}
+
+.serenity-login-brand {
+    display: inline-flex;
+    margin-bottom: 20px;
+}
+.serenity-login-brand img { max-height: 44px; width: auto; margin: 0 auto; }
+.serenity-login-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--serenity-primary), var(--serenity-primary-dark));
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(212, 163, 115, 0.35);
+}
+
+.serenity-login-title {
+    font-family: var(--serenity-font-display);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--serenity-ink);
+    margin: 0 0 6px;
+}
+.serenity-login-subtitle {
+    font-size: 14px;
+    color: var(--serenity-muted);
+    margin: 0 0 26px;
+}
+
+.serenity-login-alert {
+    text-align: left;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.serenity-login-alert-error { background: #FBEAE5; color: #8A3B2B; }
+.serenity-login-alert-success { background: var(--serenity-sage-light); color: #3E4A34; }
+
+.serenity-login-form { text-align: left; }
+.serenity-login-form .serenity-form-field { margin-bottom: 16px; }
+.serenity-login-form label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--serenity-ink-soft);
+    margin-bottom: 7px;
+}
+.serenity-login-form input[type="text"],
+.serenity-login-form input[type="password"],
+.serenity-login-form input[type="email"] {
+    width: 100%;
+    height: 46px;
+    padding: 0 15px;
+    border: 1.5px solid var(--serenity-border);
+    border-radius: 13px;
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--serenity-ink);
+    background: var(--serenity-cream);
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.serenity-login-form input:focus {
+    outline: none;
+    border-color: var(--serenity-primary);
+    box-shadow: 0 0 0 3.5px rgba(212, 163, 115, 0.18);
+    background: #fff;
+}
+
+.serenity-pwd-field { position: relative; }
+.serenity-pwd-field input { padding-right: 44px; }
+.serenity-pwd-toggle {
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    border-radius: 9px;
+    color: var(--serenity-muted);
+    cursor: pointer;
+}
+.serenity-pwd-toggle:hover { background: var(--serenity-cream-alt); color: var(--serenity-ink); }
+.serenity-pwd-toggle.is-visible { color: var(--serenity-primary-dark); }
+
+.serenity-login-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    font-size: 13px;
+}
+.serenity-login-remember {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--serenity-ink-soft);
+    cursor: pointer;
+    font-weight: 500;
+}
+.serenity-login-remember input { width: 15px; height: 15px; accent-color: var(--serenity-primary); }
+
+.serenity-login-forgot-link {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--serenity-primary-dark);
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+}
+.serenity-login-forgot-link:hover { text-decoration: underline; }
+
+.serenity-login-submit {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: none;
+    border-radius: 13px;
+    background: var(--serenity-primary);
+    color: #fff;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 14.5px;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+.serenity-login-submit:hover { background: var(--serenity-primary-dark); }
+.serenity-login-submit:active { transform: scale(0.99); }
+.serenity-login-submit:disabled { opacity: 0.85; cursor: default; }
+
+.serenity-login-spinner {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    animation: serenity-login-spin 0.7s linear infinite;
+}
+.serenity-login-submit.is-loading .serenity-login-spinner { display: inline-block; }
+.serenity-login-submit.is-loading .serenity-login-submit-text { opacity: 0.85; }
+@keyframes serenity-login-spin { to { transform: rotate(360deg); } }
+
+.serenity-login-home-link {
+    display: inline-block;
+    margin-top: 26px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--serenity-muted);
+}
+.serenity-login-home-link:hover { color: var(--serenity-primary-dark); }
+
+@media (max-width: 480px) {
+    .serenity-login-card { padding: 32px 24px 28px; border-radius: 18px; }
+}

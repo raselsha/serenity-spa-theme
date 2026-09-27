@@ -104,5 +104,8 @@ require SERENITY_DIR . '/inc/customizer.php';
 // ===== Contact page form handler =====
 require SERENITY_DIR . '/inc/contact-form.php';
 
+// ===== Custom branded login (dedicated page + native wp-login.php restyle) =====
+require SERENITY_DIR . '/inc/login.php';
+
 // ===== Small template helpers shared across templates =====
 require SERENITY_DIR . '/inc/template-helpers.php';

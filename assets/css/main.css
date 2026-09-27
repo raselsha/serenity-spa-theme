@@ -426,6 +426,8 @@ body.admin-bar .serenity-header {
 .serenity-footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding: 20px 0; }
 .serenity-footer-bottom-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12.5px; color: rgba(255,255,255,0.45); }
 .serenity-footer-bottom-inner p { margin: 0; }
+.serenity-footer-credit a { color: inherit; }
+.serenity-footer-credit a:hover { color: rgba(255,255,255,0.8); }
 
 /* ===== Inner page hero (About/Services/Branches/Contact/Blog) ===== */
 .serenity-page-hero {

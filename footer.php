@@ -81,7 +81,11 @@ $branches = serenity_get_branches();
         <div class="serenity-footer-bottom">
             <div class="serenity-container serenity-footer-bottom-inner">
                 <p>&copy; <?php echo esc_html(date('Y')); ?> <?php bloginfo('name'); ?>. <?php esc_html_e('All rights reserved.', 'serenity'); ?></p>
-                <p class="serenity-footer-credit"><?php esc_html_e('Powered by Serenity', 'serenity'); ?></p>
+                <p class="serenity-footer-credit">
+                    <?php esc_html_e('Powered by Serenity', 'serenity'); ?>
+                    <span aria-hidden="true"> &middot; </span>
+                    <a href="<?php echo esc_url(home_url('/login/')); ?>"><?php esc_html_e('Staff Login', 'serenity'); ?></a>
+                </p>
             </div>
         </div>
     </footer>
