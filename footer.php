@@ -63,7 +63,7 @@ $branches = serenity_get_branches();
                 <h4 class="serenity-footer-heading"><?php esc_html_e('Get in Touch', 'serenity'); ?></h4>
                 <ul class="serenity-footer-contact">
                     <?php $phone = get_theme_mod('serenity_phone', ''); if ($phone): ?>
-                        <li><a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', $phone)); ?>"><?php echo esc_html($phone); ?></a></li>
+                        <li><a <?php echo serenity_phone_link_attrs($phone); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside. ?>><?php echo esc_html($phone); ?></a></li>
                     <?php endif; ?>
                     <?php $email = get_theme_mod('serenity_email', ''); if ($email): ?>
                         <li><a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a></li>

@@ -1,7 +1,7 @@
 /* =========================================================================
    Serenity — spa & wellness booking theme
-   Design tokens deliberately reuse --e-global-color-primary (#D4A373) — the
-   exact warm gold/terracotta already used throughout the wc-service-booking
+   Design tokens deliberately reuse --e-global-color-primary — the variable
+   already used throughout the wc-service-booking
    plugin's own admin dashboard AND its frontend booking widgets
    (assets/frontend.css). Defining it here too means every plugin-rendered
    element (the [wcsbm_services] grid, the booking modal, "Book Now" buttons)
@@ -10,19 +10,28 @@
    ========================================================================= */
 
 :root {
-    --e-global-color-primary: #D4A373;
-    --serenity-primary: #D4A373;
-    --serenity-primary-dark: #B8895C;
-    --serenity-primary-light: #E8C9A3;
-    --serenity-ink: #2B2622;
-    --serenity-ink-soft: #4A4238;
-    --serenity-muted: #857C6E;
-    --serenity-cream: #FBF7F2;
-    --serenity-cream-alt: #F3ECE1;
+    /* "Emerald & Champagne": deep emerald for actions (buttons, links and
+       every plugin-rendered booking control via --e-global-color-primary),
+       champagne gold for accents (icons, stars, eyebrows, rules), ivory
+       backgrounds and a near-black green for the dark bands. */
+    --e-global-color-primary: #1E4D3B;
+    --serenity-primary: #1E4D3B;
+    --serenity-primary-dark: #143829;
+    --serenity-primary-light: #D5B57A;
+    --serenity-gold: #B8924F;
+    --serenity-gold-dark: #8A6A2F;
+    --serenity-gold-light: #E6D3AA;
+    --serenity-deep: #0F2219;
+    --serenity-deep-alt: #183A2D;
+    --serenity-ink: #13221B;
+    --serenity-ink-soft: #3B4842;
+    --serenity-muted: #6C7771;
+    --serenity-cream: #FAF7F1;
+    --serenity-cream-alt: #F2EEE4;
     --serenity-white: #FFFFFF;
-    --serenity-border: #E8E1D3;
-    --serenity-sage: #7C8B6F;
-    --serenity-sage-light: #E7EBE1;
+    --serenity-border: #E3DCCB;
+    --serenity-sage: #4F6B5C;
+    --serenity-sage-light: #E3EBE5;
 
     --serenity-font-display: 'Fraunces', Georgia, serif;
     --serenity-font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -31,8 +40,8 @@
     --serenity-radius-sm: 8px;
     --serenity-radius: 16px;
     --serenity-radius-lg: 28px;
-    --serenity-shadow: 0 12px 32px rgba(43, 38, 34, 0.08);
-    --serenity-shadow-lg: 0 24px 60px rgba(43, 38, 34, 0.14);
+    --serenity-shadow: 0 12px 32px rgba(19, 34, 27, 0.08);
+    --serenity-shadow-lg: 0 24px 60px rgba(19, 34, 27, 0.14);
 }
 
 /* ===== Reset ===== */
@@ -100,7 +109,7 @@ button { font-family: inherit; }
     white-space: nowrap;
 }
 .serenity-btn:hover { transform: translateY(-2px); }
-.serenity-btn-primary { background: var(--serenity-primary); color: #fff; box-shadow: 0 10px 24px rgba(212, 163, 115, 0.35); }
+.serenity-btn-primary { background: var(--serenity-primary); color: #fff; box-shadow: 0 10px 24px rgba(30, 77, 59, 0.28); }
 .serenity-btn-primary:hover { background: var(--serenity-primary-dark); color: #fff; }
 .serenity-btn-outline { background: transparent; color: var(--serenity-ink); border-color: var(--serenity-border); }
 .serenity-btn-outline:hover { border-color: var(--serenity-primary); color: var(--serenity-primary-dark); }
@@ -152,7 +161,7 @@ body.admin-bar .serenity-header {
     flex-shrink: 0;
 }
 .serenity-logo img { max-height: 48px; width: auto; }
-.serenity-logo-mark { color: var(--serenity-primary); display: inline-flex; }
+.serenity-logo-mark { color: var(--serenity-gold); display: inline-flex; }
 .serenity-logo-text {
     font-family: var(--serenity-font-display);
     font-size: 21px;
@@ -183,7 +192,7 @@ body.admin-bar .serenity-header {
     left: 0; right: 100%;
     bottom: 0;
     height: 2px;
-    background: var(--serenity-primary);
+    background: var(--serenity-gold);
     transition: right 0.2s ease;
 }
 .serenity-nav-list a:hover { color: var(--serenity-ink); }
@@ -193,7 +202,7 @@ body.admin-bar .serenity-header {
     display: flex; align-items: center; gap: 7px;
     font-size: 14px; font-weight: 700; color: var(--serenity-ink);
 }
-.serenity-header-phone svg { color: var(--serenity-primary); }
+.serenity-header-phone svg { color: var(--serenity-gold); }
 .serenity-nav-toggle {
     display: none;
     flex-direction: column;
@@ -224,19 +233,19 @@ body.admin-bar .serenity-header {
     min-height: 640px;
     display: flex;
     align-items: center;
-    background: linear-gradient(160deg, #3A332B 0%, #2B2622 65%), var(--serenity-hero-image, none) center/cover no-repeat;
+    background: linear-gradient(160deg, var(--serenity-deep-alt) 0%, var(--serenity-deep) 65%), var(--serenity-hero-image, none) center/cover no-repeat;
     background-blend-mode: overlay;
     overflow: hidden;
 }
 .serenity-hero::before {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(circle at 82% 18%, rgba(212,163,115,0.35), transparent 55%);
+    background: radial-gradient(circle at 82% 18%, rgba(213,181,122,0.30), transparent 55%);
     pointer-events: none;
 }
 .serenity-hero-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(20,17,14,0.35) 0%, rgba(20,17,14,0.65) 100%);
+    background: linear-gradient(180deg, rgba(9,22,16,0.40) 0%, rgba(9,22,16,0.72) 100%);
 }
 .serenity-hero-inner {
     position: relative;
@@ -296,7 +305,7 @@ body.admin-bar .serenity-header {
 .serenity-section-eyebrow {
     display: inline-block;
     font-size: 12.5px; font-weight: 800; letter-spacing: 1.6px;
-    text-transform: uppercase; color: var(--serenity-primary-dark);
+    text-transform: uppercase; color: var(--serenity-gold-dark);
     margin-bottom: 12px;
 }
 .serenity-section-title { font-size: clamp(28px, 3.4vw, 40px); margin-bottom: 14px; }
@@ -370,7 +379,7 @@ body.admin-bar .serenity-header {
     padding: 32px 28px;
     box-shadow: var(--serenity-shadow);
 }
-.serenity-testimonial-stars { color: var(--serenity-primary); letter-spacing: 2px; margin-bottom: 14px; font-size: 14px; }
+.serenity-testimonial-stars { color: var(--serenity-gold); letter-spacing: 2px; margin-bottom: 14px; font-size: 14px; }
 .serenity-testimonial-text { font-size: 15.5px; color: var(--serenity-ink-soft); font-style: italic; margin-bottom: 20px; }
 .serenity-testimonial-author { display: flex; flex-direction: column; }
 .serenity-testimonial-name { font-weight: 700; color: var(--serenity-ink); font-size: 14px; }
@@ -378,7 +387,7 @@ body.admin-bar .serenity-header {
 
 /* ===== CTA banner ===== */
 .serenity-cta-banner {
-    background: linear-gradient(135deg, #3A332B, #2B2622);
+    background: linear-gradient(135deg, var(--serenity-deep-alt), var(--serenity-deep));
     padding: 76px 0;
     text-align: center;
     position: relative;
@@ -387,14 +396,14 @@ body.admin-bar .serenity-header {
 .serenity-cta-banner::before {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(circle at 20% 30%, rgba(212,163,115,0.28), transparent 55%);
+    background: radial-gradient(circle at 20% 30%, rgba(213,181,122,0.24), transparent 55%);
 }
 .serenity-cta-banner-inner { position: relative; z-index: 1; }
 .serenity-cta-banner h2 { color: #fff; font-size: clamp(26px, 3.2vw, 36px); margin-bottom: 12px; }
 .serenity-cta-banner p { color: rgba(255,255,255,0.75); margin-bottom: 30px; }
 
 /* ===== Footer ===== */
-.serenity-footer { background: #211C18; color: rgba(255,255,255,0.72); padding-top: 72px; }
+.serenity-footer { background: var(--serenity-deep); color: rgba(255,255,255,0.72); padding-top: 72px; }
 .serenity-footer-grid {
     display: grid;
     grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
@@ -412,7 +421,7 @@ body.admin-bar .serenity-header {
     color: #fff;
     transition: background 0.15s ease, color 0.15s ease;
 }
-.serenity-social-link:hover { background: var(--serenity-primary); }
+.serenity-social-link:hover { background: var(--serenity-gold); }
 .serenity-footer-heading { color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 0.8px; font-family: var(--serenity-font-body); margin-bottom: 18px; }
 .serenity-footer-links, .serenity-footer-branches, .serenity-footer-contact { display: flex; flex-direction: column; gap: 12px; }
 .serenity-footer-links a, .serenity-footer-contact a { font-size: 14px; color: rgba(255,255,255,0.65); }
@@ -453,7 +462,7 @@ body.admin-bar .serenity-header {
 .serenity-prose blockquote {
     margin: 1.8em 0;
     padding: 20px 24px;
-    border-left: 3px solid var(--serenity-primary);
+    border-left: 3px solid var(--serenity-gold);
     background: var(--serenity-cream-alt);
     border-radius: 0 var(--serenity-radius-sm) var(--serenity-radius-sm) 0;
     font-style: italic;
@@ -475,7 +484,7 @@ body.admin-bar .serenity-header {
     display: flex; align-items: center; justify-content: center;
     border-radius: 50%;
     background: var(--serenity-cream-alt);
-    color: var(--serenity-primary);
+    color: var(--serenity-gold);
 }
 .serenity-branch-card-body h3 { font-size: 18px; margin-bottom: 6px; }
 .serenity-branch-card-body p { color: var(--serenity-muted); font-size: 14px; margin-bottom: 12px; }
@@ -490,7 +499,7 @@ body.admin-bar .serenity-header {
 }
 .serenity-contact-details { display: flex; flex-direction: column; gap: 16px; margin: 24px 0 32px; }
 .serenity-contact-details li { display: flex; align-items: center; gap: 12px; font-size: 15px; }
-.serenity-contact-details svg { color: var(--serenity-primary); flex-shrink: 0; }
+.serenity-contact-details svg { color: var(--serenity-gold); flex-shrink: 0; }
 .serenity-contact-branches { margin-bottom: 28px; }
 .serenity-contact-branches h3 { font-size: 16px; margin-bottom: 14px; }
 .serenity-contact-branch { display: flex; flex-direction: column; padding: 12px 0; border-top: 1px solid var(--serenity-border); }
@@ -523,7 +532,7 @@ body.admin-bar .serenity-header {
 .serenity-form-field input:focus, .serenity-form-field textarea:focus {
     outline: none;
     border-color: var(--serenity-primary);
-    box-shadow: 0 0 0 3px rgba(212,163,115,0.18);
+    box-shadow: 0 0 0 3px rgba(30,77,59,0.15);
     background: #fff;
 }
 .serenity-form-submit { width: 100%; margin-top: 6px; }
@@ -533,7 +542,7 @@ body.admin-bar .serenity-header {
 
 /* ===== 404 ===== */
 .serenity-404-inner { text-align: center; max-width: 520px; margin: 0 auto; padding: 40px 0; }
-.serenity-404-mark { display: inline-flex; color: var(--serenity-primary); margin-bottom: 20px; }
+.serenity-404-mark { display: inline-flex; color: var(--serenity-gold); margin-bottom: 20px; }
 .serenity-404-inner h1 { font-size: 32px; }
 .serenity-404-inner p { color: var(--serenity-muted); margin-bottom: 28px; }
 .serenity-404-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
@@ -612,4 +621,33 @@ body.admin-bar .serenity-header {
     .serenity-features-grid { grid-template-columns: 1fr; }
     .serenity-hero-actions { flex-direction: column; align-items: stretch; }
     .serenity-hero-actions .serenity-btn { justify-content: center; }
+}
+
+
+/* ===== Footer widget areas: match the footer column headings (they used
+   the global dark heading colour, invisible on the dark footer). ===== */
+.serenity-footer-widget { margin-top: 26px; }
+.serenity-footer-widget h2, .serenity-footer-widget h3, .serenity-footer-widget .wp-block-heading {
+    font-family: var(--serenity-font-body);
+    font-size: 13px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase;
+    color: #fff; margin: 0 0 14px;
+}
+.serenity-footer-widget ul { list-style: none; margin: 0; padding: 0; }
+.serenity-footer-widget li { margin-bottom: 8px; }
+.serenity-footer-widget a { color: rgba(255,255,255,0.72); }
+.serenity-footer-widget a:hover { color: var(--serenity-primary-light); }
+
+/* Thin champagne rule under section eyebrows for a more refined look. */
+.serenity-section-eyebrow::after { content: ''; display: block; width: 28px; height: 1px; margin: 10px auto 0; background: var(--serenity-gold); }
+
+/* Service cards ([wcsbm_services]): the plugin paints the pressure
+   highlight and track with inline styles mixed from the primary colour,
+   which turns a muddy grey-green with emerald. Champagne tint instead. */
+.wcsbm-service-card div[style*="z-index:-10"] {
+    background: rgba(184, 146, 79, 0.14) !important;
+    border-color: rgba(184, 146, 79, 0.55) !important;
+    box-shadow: none !important;
+}
+.wcsbm-service-card div[style*="height:6px"][style*="linear-gradient"] {
+    background: linear-gradient(to right, var(--serenity-gold-light), var(--serenity-gold) 55%, var(--serenity-primary)) !important;
 }

@@ -19,6 +19,12 @@ function serenity_customize_register($wp_customize) {
     $wp_customize->add_setting('serenity_phone', ['default' => '+351 21 000 0000', 'sanitize_callback' => 'sanitize_text_field']);
     $wp_customize->add_control('serenity_phone', ['label' => __('Phone Number', 'serenity'), 'section' => 'serenity_contact', 'type' => 'text']);
 
+    // When on, every phone link opens a WhatsApp chat with that number
+    // (wa.me) instead of dialling it — for businesses that take enquiries
+    // on WhatsApp.
+    $wp_customize->add_setting('serenity_phone_whatsapp', ['default' => false, 'sanitize_callback' => 'wp_validate_boolean']);
+    $wp_customize->add_control('serenity_phone_whatsapp', ['label' => __('Open a WhatsApp chat when the phone number is clicked', 'serenity'), 'section' => 'serenity_contact', 'type' => 'checkbox']);
+
     $wp_customize->add_setting('serenity_email', ['default' => get_option('admin_email'), 'sanitize_callback' => 'sanitize_email']);
     $wp_customize->add_control('serenity_email', ['label' => __('Contact Email', 'serenity'), 'section' => 'serenity_contact', 'type' => 'email']);
 

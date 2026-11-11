@@ -76,3 +76,25 @@ function serenity_social_links() {
         );
     }
 }
+
+// Phone links: a WhatsApp chat (wa.me) when the Customizer's "Open a WhatsApp
+// chat" box is ticked, otherwise a normal tel: link. Returns the ready-made
+// href (+ target/rel for WhatsApp) attributes.
+function serenity_phone_is_whatsapp() {
+    return (bool) get_theme_mod('serenity_phone_whatsapp', false);
+}
+
+function serenity_phone_link_attrs($phone) {
+    $digits = preg_replace('/[^0-9]/', '', (string) $phone);
+    if (serenity_phone_is_whatsapp() && $digits) {
+        return 'href="' . esc_url('https://wa.me/' . $digits) . '" target="_blank" rel="noopener"';
+    }
+    return 'href="' . esc_attr('tel:' . preg_replace('/[^0-9+]/', '', (string) $phone)) . '"';
+}
+
+function serenity_phone_icon($size = 15, $stroke = 2) {
+    if (serenity_phone_is_whatsapp()) {
+        return '<svg width="' . (int) $size . '" height="' . (int) $size . '" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.4 1.32-1.93 1.36-.5.05-1 .24-3.4-.8-2.87-1.24-4.7-4.16-4.85-4.35-.14-.2-1.16-1.54-1.16-2.94 0-1.4.73-2.08.99-2.37.27-.28.58-.35.78-.35.2 0 .4.002.57.01.18.008.43-.07.67.51.25.6.85 2.07.92 2.22.07.15.12.33.02.53-.1.2-.15.32-.3.5-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.35 1.45.29.15.46.13.63-.08.17-.2.72-.84.92-1.13.2-.29.4-.24.66-.15.27.1 1.72.81 2.01.96.29.15.49.22.56.34.07.13.07.75-.17 1.43Z"/></svg>';
+    }
+    return '<svg width="' . (int) $size . '" height="' . (int) $size . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' . esc_attr($stroke) . '" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
+}
